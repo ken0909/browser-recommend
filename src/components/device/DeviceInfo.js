@@ -53,7 +53,17 @@ export default class DeviceInfo extends Component {
             />
         ];
         const ua = this.props.browserInfo.ua;
-        if (ua === 'ie' || ua === 'android') {
+        if (ua === 'webView') {
+            messageList.push(
+                <ListItem
+                    key={2}
+                    primaryText={this.props.browserInfo.message}
+                    disableKeyboardFocus={true}
+                    disabled={true}
+                    leftIcon={<AlertWarning color={red500} />}
+                />
+            );
+        } else if (ua === 'ie' || ua === 'android') {
             messageList.push(
                 <ListItem
                     key={2}

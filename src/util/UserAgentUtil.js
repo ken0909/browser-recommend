@@ -9,11 +9,19 @@ export const getBrowserInfo = () => {
     const safari = ua.indexOf('safari') !== -1 && ua.indexOf('chrome') === -1;
     const androidBrowser = ua.indexOf('android') !== -1 && ua.indexOf('linux; u;') !== -1 && ua.indexOf('chrome') === -1;
     const samsungBrowser = ua.indexOf('samsungbrowser') !== -1;
+    const line = ua.indexOf('line') !== -1;
+    const facebook = ua.indexOf('fban') !== -1;
+    const twitter = ua.indexOf('twitter') !== -1;
+    const webView = ua.indexOf('wv)') !== -1;
 
     const ret = {
         browser: 'お使いのブラウザを判別できませんでした'
     };
-    if (ie) {
+    if (line || facebook || twitter || webView) {
+        ret.browser = 'これはアプリ内Webビューです';
+        ret.message = '普段お使いのブラウザでアクセスしてください';
+        ret.ua = 'webView';
+    } else if (ie) {
         const ver = ua.match(/msie\s(\d+)\.(\d+)/);
         ret.browser = `Internet Explorer ${ver[0].replace(/msie\s/, '')}`;
         ret.message = '今すぐブラウザを変更することを推奨します！';
@@ -51,12 +59,6 @@ export const getBrowserInfo = () => {
         ret.ua = 'safari';
     }
     return ret;
-};
-
-export const clientInfo = {
-    userAgent: ua,
-    platform: navigator.platform,
-    browser: getBrowserInfo().browser
 };
 
 export const deviceInfo = {
