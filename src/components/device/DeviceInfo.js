@@ -19,7 +19,7 @@ export default class DeviceInfo extends Component {
                 justifyContent: 'center',
             }
         };
-        if (window.innerWidth <= 980) {
+        if (window.innerWidth <= 640) {
             this.style.dialog = {
                 width: '100%',
                 maxWidth: 'none',
