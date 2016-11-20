@@ -1,5 +1,4 @@
 import React from 'react';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
 import { List, ListItem } from 'material-ui/List';
 import DeviceInfo from '../device/DeviceInfo';
@@ -13,7 +12,7 @@ const style = {
 };
 
 const BrowserInfo = ({ browserInfo }) => (
-      <MuiThemeProvider>
+      <div className="BrowserInfo">
             <Card>
                 <CardHeader title="どのブラウザをお使いですか？" titleColor="#e91e63" />
                 <CardText>
@@ -82,7 +81,7 @@ const BrowserInfo = ({ browserInfo }) => (
                     ここで、おすすめのブラウザを二つ紹介します。
                 </CardText>
             </Card>
-      </MuiThemeProvider>
+      </div>
     );
 
 export default BrowserInfo;
