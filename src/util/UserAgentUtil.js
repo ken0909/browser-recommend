@@ -57,6 +57,9 @@ export const getBrowserInfo = () => {
         const ver = ua.match(/version\/(\d+)\.(\d+)/);
         ret.browser = `Safari ${ver[0].replace(/version\//, '')}`;
         ret.ua = 'safari';
+    } else {
+        ret.browser = 'ブラウザを判別できませんでした';
+        ret.ua = 'other';
     }
     return ret;
 };
@@ -72,4 +75,21 @@ export const deviceInfo = {
     Mobile: (ua.indexOf('windows') !== -1 && ua.indexOf('phone') !== -1)
         || (ua.indexOf('firefox') !== -1 && ua.indexOf('mobile') !== -1)
         || ua.indexOf('blackberry') !== -1
+};
+
+export const getPlatformInfo = (platform) => {
+    let ret = '';
+    const lowerPlatform = platform.toLowerCase();
+    if (lowerPlatform.indexOf('linux arm') !== -1) {
+        ret = 'Android';
+    } else if (lowerPlatform.indexOf('iphone') !== -1 || lowerPlatform.indexOf('ipod') !== -1) {
+        ret = 'iOS';
+    } else if (lowerPlatform.indexOf('mac') !== -1) {
+        ret = 'Mac';
+    } else if (lowerPlatform.indexOf('win') !== -1) {
+        ret = 'Windows';
+    } else {
+        ret = platform;
+    }
+    return ret;
 };
