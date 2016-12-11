@@ -10,6 +10,7 @@ export default class Firefox extends Component {
         super();
         this.style = {
             flex: 1,
+            flexGrow: 1,
         };
         if (window.innerWidth >= 1140) {
             this.style.marginLeft = '2px';

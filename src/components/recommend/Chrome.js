@@ -9,6 +9,7 @@ export default class Chrome extends Component {
         super();
         this.style = {
             flex: 1,
+            flexGrow: 1,
         };
         if (window.innerWidth >= 1140) {
             this.style.marginRight = '2px';
