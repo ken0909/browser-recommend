@@ -2,9 +2,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import injectTapEventPlugin from 'react-tap-event-plugin';
 import { Router, Route, browserHistory } from 'react-router';
-import Top from './components/top/Top';
-import Chart from './components/chart/Chart';
-import DeviceInfoList from './components/device/DeviceInfoList';
+import Top from './containers/Top';
+import Chart from './containers/Chart';
+import DeviceInfoList from './containers/DeviceInfoList';
 
 injectTapEventPlugin();
 
