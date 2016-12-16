@@ -4,8 +4,8 @@ export const getBrowserInfo = () => {
     const ie = ua.indexOf('msie') !== -1;
     const ie11 = ua.indexOf('trident') !== -1;
     const edge = ua.indexOf('edge') !== -1 && ua.indexOf('chrome') !== -1;
-    const chrome = ua.indexOf('chrome') !== -1 && ua.indexOf('edge') === -1;
-    const firefox = ua.indexOf('firefox') !== -1 || ua.indexOf('fxios') !== -1;
+    const chrome = (ua.indexOf('chrome') !== -1 && ua.indexOf('edge') === -1) || (ua.indexOf('safari') !== -1 && ua.indexOf('crios') !== -1);
+    const firefox = (ua.indexOf('firefox') !== -1 || ua.indexOf('fxios') !== -1) || (ua.indexOf('safari') !== -1 && ua.indexOf('fxios') !== -1);
     const safari = ua.indexOf('safari') !== -1 && ua.indexOf('chrome') === -1;
     const androidBrowser = ua.indexOf('android') !== -1 && ua.indexOf('linux; u;') !== -1 && ua.indexOf('chrome') === -1;
     const samsungBrowser = ua.indexOf('samsungbrowser') !== -1;
@@ -44,13 +44,13 @@ export const getBrowserInfo = () => {
         ret.browser = `Microsoft Edge ${ver[0].replace(/edge\//, '')}`;
         ret.ua = 'edge';
     } else if (chrome) {
-        const ver = ua.match(/chrome\/(\d+)\.(\d+)/);
-        ret.browser = `Google Chrome ${ver[0].replace(/chrome\//, '')}`;
+        const ver = ua.match(/(chrome\/(\d+)\.(\d+)|crios\/(\d+)\.(\d+))/);
+        ret.browser = `Google Chrome ${ver[0].replace(/(chrome\/|crios\/)/, '')}`;
         ret.message = '素晴らしい！';
         ret.ua = 'chrome';
     } else if (firefox) {
-        const ver = ua.match(/firefox\/(\d+)\.(\d+)/);
-        ret.browser = `Firefox ${ver[0].replace(/firefox\//, '')}`;
+        const ver = ua.match(/(firefox\/(\d+)\.(\d+)|fxios\/(\d+)\.(\d+))/);
+        ret.browser = `Firefox ${ver[0].replace(/(firefox\/|fxios\/)/, '')}`;
         ret.message = '素晴らしい！';
         ret.ua = 'firefox';
     } else if (safari) {
@@ -88,6 +88,8 @@ export const getPlatformInfo = (platform) => {
         ret = 'Mac';
     } else if (lowerPlatform.indexOf('win') !== -1) {
         ret = 'Windows';
+    } else if (lowerPlatform.indexOf('linux') !== -1) {
+        ret = 'Linux';
     } else {
         ret = platform;
     }
